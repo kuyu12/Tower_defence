@@ -3,9 +3,9 @@ import sys
 import pygame
 from pygame_widgets.button import Button
 import pygame_widgets as pw
-from Utils.Colors import GREEN, WHITE, GREY, BLACK
-from Utils.Conts import MAP_SIZE
-from Views.Sprites.BackgroundSprite import BackgroundSprite
+from Tower_defence.Utils.Colors import GREEN, WHITE, GREY, BLACK
+from Tower_defence.Utils.Conts import MAP_SIZE
+from Tower_defence.Views.Sprites.BackgroundSprite import BackgroundSprite
 
 
 class MapPathPage:

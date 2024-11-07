@@ -24,7 +24,7 @@ class Stage:
         self.stage_view = StageView(self.stage_data)
         self.stage_manager = StageManager(self.stage_data,self.wave_data)
 
-        # TEMP!!!
+        # start stage
         self.stage_manager.start_stage(5)
 
     def _setup_event_manage(self):
@@ -45,8 +45,13 @@ class Stage:
             else:
                 self.sound_manager.play_error_sound()
 
-        if action == Action.Tower_Attack_Method_Change:
-            self.stage_view.inject_action(action, event.data)
+        if action == Action.Tower_Attack_Upgrade:
+            buy_data = self.stage_manager.update_tower(event.data)
+            if buy_data:
+                self.sound_manager.play_coin_sound()
+                self.stage_view.inject_action(action, buy_data)
+            else:
+                self.sound_manager.play_error_sound()
 
         if action == Action.Tower_Attack_Enemy:
             damage = event.data['tower'].damage
@@ -66,6 +71,10 @@ class Stage:
             self.stage_view.remove_enemy(enemy.index)
             buy_data = self.stage_manager.enemy_has_remove(enemy)
             self.stage_view.inject_action(Action.Remove_Enemy, {'money':buy_data})
+        if action == Action.Enemy_Update:
+            enemy = event.data['enemy']
+            self.stage_view.update_enemy(enemy)
+
 
     def update(self):
         self.stage_view.update()

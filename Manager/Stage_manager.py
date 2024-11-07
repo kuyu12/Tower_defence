@@ -64,7 +64,6 @@ class StageManager:
             self.enemy_send_time = pygame.time.get_ticks()
 
             enemy = self.parsing_wave.pop(random.randrange(len(self.parsing_wave)))
-
             self.next_wave_random_time = random.randint(ENEMY_MIN_WAVE_TIME, ENEMY_MAX_WAVE_TIME)
             signal_data = SignalData(sender=self.__class__.__name__, signal=Signals.Add_Enemy, data={'enemy': enemy})
             dispatcher.send(signal=Signals.Add_Enemy,
@@ -73,6 +72,16 @@ class StageManager:
     def set_stage_state(self, state, event):
         self.map_state = Map_State.state_init(state)
         self.tower_current_selected = event.data if self.map_state == Map_State.Tower_Selected else None
+
+    def update_tower(self,pos_event):
+        print(pos_event)
+        cost = pos_event['cost']
+
+        if self.money >= cost:
+            self.money -= cost
+            return {'index': pos_event['index'], 'money': self.money, 'upgrade':pos_event['upgrade']}
+
+        return False
 
     def buy_tower(self, pos_event):
         tower = self.tower_current_selected['tower']

@@ -3,9 +3,9 @@ import os
 import PySimpleGUI as sg
 from PIL import Image
 
-from Utils.Conts import stage_mapper
-from Utils.Enums import Difficulty, TowersType
-from Utils.Paths import STAGES_PATH
+from Tower_defence.Utils.Conts import stage_mapper
+from Tower_defence.Utils.Enums import Difficulty, TowersType
+from Tower_defence.Utils.Paths import STAGES_PATH
 
 
 class MapInfoPage:

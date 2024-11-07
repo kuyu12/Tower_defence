@@ -19,9 +19,11 @@ class EnemiesManager:
         self.enemies = list(filter(lambda x: x.index != enemy_index, self.enemies))
 
     def decrease_enemy_live(self,enemy_index,damage):
-        print(enemy_index)
         enemy = next(filter(lambda x: x.index == enemy_index, self.enemies))
         enemy.health -= damage
+        signal_data = SignalData(sender=self.__class__.__name__, signal=Signals.Enemy_Update,
+                                 data={'enemy': enemy})
+        dispatcher.send(signal=Signals.Enemy_Update, event=signal_data)
 
     def update(self):
         for enemy in self.enemies:

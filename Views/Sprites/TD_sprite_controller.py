@@ -1,5 +1,6 @@
 import pygame
 from Views.Sprites.Explosion_sprite import ExplosionSprite
+from Views.Sprites.Extra_draw_sprite import ExtraDrawSprite
 
 
 class TDSpriteController(pygame.sprite.Group):
@@ -17,3 +18,6 @@ class TDSpriteController(pygame.sprite.Group):
     def draw(self, surface, game_state=None):
         self.background_group.draw(surface)
         super().draw(surface)
+        for sprite in self.sprites():
+            if isinstance(sprite, ExtraDrawSprite):
+                sprite.drawExtra(surface)

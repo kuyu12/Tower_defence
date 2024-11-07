@@ -18,9 +18,10 @@ class Signals(ExtendedEnum):
     Tower_Placed = 1
     Tower_Selected = 2
     Add_Enemy = 3
-    Tower_Attack_Method_Change = 4
+    Tower_Upgrade = 4
     Tower_Attack_Enemy = 5
     Remove_Enemy = 6
+    Enemy_Update = 7
 
 
 class Stage_State(ExtendedEnum):
@@ -30,10 +31,11 @@ class Stage_State(ExtendedEnum):
 
 class Action(ExtendedEnum):
     Tower_Placed = 0
-    Tower_Attack_Method_Change = 1
+    Tower_Attack_Upgrade = 1
     Tower_Attack_Enemy = 2
     Add_Enemy = 3
     Remove_Enemy = 4
+    Enemy_Update = 5
 
 
 class Map_State(ExtendedEnum):
@@ -47,6 +49,12 @@ class Map_State(ExtendedEnum):
         if stage_state == Stage_State.Tower_Selected:
             return Map_State.Tower_Selected
         return None
+
+
+class TowerUpgrade(ExtendedEnum):
+    Damage = 1
+    Speed = 2
+    Range = 3
 
 
 class TowersType(ExtendedEnum):

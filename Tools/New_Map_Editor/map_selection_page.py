@@ -5,9 +5,9 @@ import numpy as np
 import pygame
 from pygame_widgets.button import Button
 
-from Utils.Colors import WHITE, GREY, GREEN, RED
-from Utils.Conts import MAP_SIZE, stage_mapper
-from Views.Sprites.BackgroundSprite import BackgroundSprite
+from Tower_defence.Utils.Colors import WHITE, GREY, GREEN, RED
+from Tower_defence.Utils.Conts import MAP_SIZE, stage_mapper
+from Tower_defence.Views.Sprites.BackgroundSprite import BackgroundSprite
 import pygame_widgets as pw
 
 

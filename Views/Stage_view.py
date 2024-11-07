@@ -1,20 +1,22 @@
 from math import sqrt
 
 import pygame
+from random import randrange
+
+from pygame.sprite import Group
 
 from Manager.Tower_sprite_manager import TowerSpriteManager
+from Utils.Conts import stage_mapper, EXPLOSION_SIZE
+from Utils.Enums import Map_State, Action
 from Utils.Paths import EXPLOSION_IMAGES_PATH
+from Views.Grid_view import GridView
+from Views.Sprites.BackgroundSprite import BackgroundSprite
 from Views.Sprites.Enemy_sprite import EnemySprite
 from Views.Sprites.Explosion_sprite import ExplosionSprite
 from Views.Sprites.TD_sprite_controller import TDSpriteController
-from Utils.Conts import stage_mapper, EXPLOSION_SIZE
-from Utils.Enums import Map_State, Action
-from Views.Grid_view import GridView
-from Views.Sprites.BackgroundSprite import BackgroundSprite
 from Views.Sprites.Tower_sprite import TowerSprint
 from Views.Surface_view import SurfaceView
 from Views.Tower_panel.Tower_panel_view import TowerPanelView
-from random import randrange
 
 
 class StageView(SurfaceView):
@@ -44,10 +46,14 @@ class StageView(SurfaceView):
         self.enemies.append(enemy)
         self.spriteGroupController.add(enemy)
 
-    def remove_enemy(self,enemy_index):
+    def remove_enemy(self, enemy_index):
         enemy = next(filter(lambda x: x.enemy.index == enemy_index, self.enemies))
         self.enemies.remove(enemy)
         enemy.kill()
+
+    def update_enemy(self, enemy_data):
+        enemy = next(filter(lambda x: x.enemy.index == enemy_data.index, self.enemies))
+        enemy.set_health(enemy_data.health)
 
     def set_stage_state(self, state, event):
         self.map_state = Map_State.state_init(state)
@@ -61,8 +67,8 @@ class StageView(SurfaceView):
 
     def add_explotion(self, enemy_index):
         enemy = next(filter(lambda x: x.enemy.index == enemy_index, self.enemies))
-        position = (enemy.rect.centerx - (EXPLOSION_SIZE[0]/2), enemy.rect.centery - (EXPLOSION_SIZE[1]/2))
-        explosionSprint = ExplosionSprite(position,EXPLOSION_IMAGES_PATH)
+        position = (enemy.rect.centerx - (EXPLOSION_SIZE[0] / 2), enemy.rect.centery - (EXPLOSION_SIZE[1] / 2))
+        explosionSprint = ExplosionSprite(position, EXPLOSION_IMAGES_PATH)
         self.spriteGroupController.add(explosionSprint)
 
     def _on_action(self, action, event):
@@ -73,8 +79,9 @@ class StageView(SurfaceView):
             self.towers_manager.add_tower(tower_sprite)
             self.spriteGroupController.add(tower_sprite)
 
-        if action == Action.Tower_Attack_Method_Change:
-            self.towers_manager.set_tower_attack_method(event['index'], event['method'])
+        if action == Action.Tower_Attack_Upgrade:
+            self.towers_manager.tower_attack_upgrade(event['index'], event['upgrade'])
+            self.tower_panel_view.stage_info.set_money(event['money'])
 
         if action == Action.Remove_Enemy:
             self.tower_panel_view.stage_info.set_money(event['money'])

@@ -7,10 +7,11 @@ SCREEN_SIZE = (1400, 650)
 TOWER_BUTTON_SIZE = (64,64)
 GRID_BLOCK_SIZE = int(MAP_SIZE[0] / 20)
 ENEMY_SIZE = (45,45)
-ENEMY_MIN_WAVE_TIME = 800
-ENEMY_MAX_WAVE_TIME = 2000
+ENEMY_MIN_WAVE_TIME = 300
+ENEMY_MAX_WAVE_TIME = 1000
 TOWER_INFO_SIZE = (300,200)
 EXPLOSION_SIZE = (100,100)
+HEALTH_BAR_SIZE = (50,8)
 
 # Stage
 stage_mapper = {
@@ -106,7 +107,7 @@ ENEMY_DATA = {
         'health': 40,
         'speed': 15,
         'image_url': ENEMY_IMAGES_PATH + '/Armored_vehicle_1.png',
-        'worth_money': 5
+        'worth_money': 7
     },
     EnemyType.Armored_vehicle_2.name: {
         'health': 70,
@@ -115,56 +116,56 @@ ENEMY_DATA = {
         'worth_money': 7
     },
     EnemyType.Armored_vehicle_3.name: {
-        'health': 100,
-        'speed': 14,
+        'health': 40,
+        'speed': 4,
         'image_url': ENEMY_IMAGES_PATH + '/Armored_vehicle_3.png',
         'worth_money': 10
     },
     EnemyType.Basic_tank_1.name: {
-        'health': 120,
-        'speed': 13,
+        'health': 100,
+        'speed': 12,
         'image_url': ENEMY_IMAGES_PATH + '/Basic_tank_1.png',
-        'worth_money': 12
+        'worth_money': 13
     },
     EnemyType.Basic_tank_2.name: {
         'health': 120,
-        'speed': 14,
+        'speed': 10,
         'image_url': ENEMY_IMAGES_PATH + '/Basic_tank_2.png',
-        'worth_money': 13
+        'worth_money': 15
     },
     EnemyType.Basic_tank_3.name: {
         'health': 150,
-        'speed': 13,
+        'speed': 10,
         'image_url': ENEMY_IMAGES_PATH + '/Basic_tank_3.png',
-        'worth_money': 15
+        'worth_money': 20
     },
     EnemyType.Light_tank_1.name: {
         'health': 170,
-        'speed': 11,
+        'speed': 7,
         'image_url': ENEMY_IMAGES_PATH + '/Light_tank_1.png',
-        'worth_money': 20
+        'worth_money': 25
     },
     EnemyType.Light_tank_2.name: {
         'health': 200,
-        'speed': 10,
+        'speed': 6,
         'image_url': ENEMY_IMAGES_PATH + '/Light_tank_2.png',
-        'worth_money': 25
+        'worth_money': 30
     },
     EnemyType.Medium_tank.name: {
         'health': 220,
-        'speed': 8,
+        'speed': 58,
         'image_url': ENEMY_IMAGES_PATH + '/Medium_tank.png',
         'worth_money': 40
     },
     EnemyType.Heavy_tank_1.name: {
         'health': 250,
-        'speed': 10,
+        'speed': 4,
         'image_url': ENEMY_IMAGES_PATH + '/Heavy_tank_1.png',
         'worth_money': 40
     },
     EnemyType.Heavy_tank_2.name: {
         'health': 750,
-        'speed': 20,
+        'speed': 18,
         'image_url': ENEMY_IMAGES_PATH + '/Heavy_tank_2.png',
         'worth_money': 80
     },
@@ -172,6 +173,6 @@ ENEMY_DATA = {
         'health': 300,
         'speed': 6,
         'image_url': ENEMY_IMAGES_PATH + '/Heavy_tank_3.png',
-        'worth_money': 50
+        'worth_money': 100
     }
 }

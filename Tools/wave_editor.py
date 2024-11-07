@@ -4,6 +4,8 @@ import sys
 
 import PySimpleGUI as sg
 from PIL import Image
+import sys
+sys.path.append('../')
 
 from Utils.Conts import stage_mapper
 from Utils.Enums import Difficulty, TowersType
@@ -21,7 +23,7 @@ def show_wave_editor(wave_count,location):
     layout = [[sg.Text('Create wave')]]
     for wave in range(wave_count):
         layout.append([sg.Text('Wave '+str(wave)),sg.In(default_text='', key='enemy_numbers_'+str(wave)),sg.In(default_text='', key='enemy_counts_'+str(wave))])
-    layout.append([sg.Open()])
+    layout.append([sg.Open(button_text="Save")])
     event, values = sg.Window('Wave Editor',layout).read(close=True)
     handel_events(event, values,location,wave_count)
 

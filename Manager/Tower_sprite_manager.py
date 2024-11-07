@@ -2,7 +2,7 @@ import pygame
 
 from Manager.Base_manager import BaseManager
 from Utils.Colors import RED
-from Utils.Enums import Map_State, Signals
+from Utils.Enums import Map_State, Signals, TowerUpgrade
 from Utils.Sprite_utils import SpriteUtils
 from Views.Tower_info_view import TowerInfoView
 
@@ -19,9 +19,18 @@ class TowerSpriteManager(BaseManager):
     def remove_tower(self, tower):
         self.towers.remove(tower)
 
-    def set_tower_attack_method(self,tower_index,method):
+    def tower_attack_upgrade(self, tower_index, upgrade):
         tower = next(x for x in self.towers if x.tower.index == tower_index)
-        tower.tower.attack_method = method
+        tower_data = tower.tower
+        if upgrade == TowerUpgrade.Speed:
+            tower.shot_speed = (tower_data.shot_speed - tower_data.upgrade) * 10
+            tower.tower.shot_speed -= tower_data.upgrade
+        if upgrade == TowerUpgrade.Damage:
+            tower.tower.damage += tower_data.upgrade
+
+        # update
+        self.tower_info.tower = tower.tower
+        self.tower_info.update_view()
 
     def update(self, enemies):
         if self.tower_info:

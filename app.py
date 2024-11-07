@@ -1,4 +1,7 @@
+import sys
+
 import pygame
+
 from Manager.Stage import Stage
 from Utils.Conts import SCREEN_SIZE
 
@@ -12,7 +15,12 @@ if __name__ == '__main__':
     while True:
         events = pygame.event.get()
         for event in events:
-            stage.update_event(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+                break
+            else:
+                stage.update_event(event)
 
         stage.draw(screen)
         stage.update()

@@ -3,9 +3,9 @@ import sys
 
 import pygame
 
-from Tools.New_Map_Editor.map_info_page import MapInfoPage
-from Tools.New_Map_Editor.map_path_page import MapPathPage
-from Tools.New_Map_Editor.map_selection_page import MapSelectionAreaPage
+from Tower_defence.Tools.New_Map_Editor.map_info_page import MapInfoPage
+from Tower_defence.Tools.New_Map_Editor.map_path_page import MapPathPage
+from Tower_defence.Tools.New_Map_Editor.map_selection_page import MapSelectionAreaPage
 
 
 def save_json(stage_location, dict_json):
