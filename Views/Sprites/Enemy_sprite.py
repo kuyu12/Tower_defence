@@ -54,10 +54,6 @@ class EnemySprite(ExtraDrawSprite):
             self.next_path_location += 1
 
     def set_health(self, health):
-        print("set_health")
-        print(health)
-        print(self.rect)
-        print()
         self.health = health
         self.healthBar.update_health(health)
 

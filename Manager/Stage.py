@@ -22,7 +22,7 @@ class Stage:
         with open(STAGES_PATH + '/' + stage_name + '/wave_data.json') as f:
             self.wave_data = json.load(f)
         self.stage_view = StageView(self.stage_data)
-        self.stage_manager = StageManager(self.stage_data,self.wave_data)
+        self.stage_manager = StageManager(self.stage_data, self.wave_data)
 
         # start stage
         self.stage_manager.start_stage(5)
@@ -58,9 +58,9 @@ class Stage:
             enemy_index = event.data['enemy'].enemy.index
             self.sound_manager.play_explosion_sound()
             self.stage_view.add_explotion(enemy_index)
-            self.enemy_manager.decrease_enemy_live(enemy_index,damage)
+            self.enemy_manager.decrease_enemy_live(enemy_index, damage)
 
-    def on_enemy_action(self,event,action):
+    def on_enemy_action(self, event, action):
         if action == Action.Add_Enemy:
             enemy_number = event.data['enemy']
             enemy = self.enemy_manager.add_enemies(EnemyType.convert_number_to_enemy(enemy_number))
@@ -70,11 +70,10 @@ class Stage:
             self.enemy_manager.remove_enemy(enemy.index)
             self.stage_view.remove_enemy(enemy.index)
             buy_data = self.stage_manager.enemy_has_remove(enemy)
-            self.stage_view.inject_action(Action.Remove_Enemy, {'money':buy_data})
+            self.stage_view.inject_action(Action.Remove_Enemy, {'money': buy_data})
         if action == Action.Enemy_Update:
             enemy = event.data['enemy']
             self.stage_view.update_enemy(enemy)
-
 
     def update(self):
         self.stage_view.update()

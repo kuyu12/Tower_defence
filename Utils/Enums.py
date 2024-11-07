@@ -7,6 +7,11 @@ class ExtendedEnum(Enum):
         return list(map(lambda c: c.value, cls))
 
 
+class ScreenType(ExtendedEnum):
+    Game = 1
+    Menu = 2
+
+
 class Difficulty(ExtendedEnum):
     Easy = 'Easy'
     Medium = 'Medium'

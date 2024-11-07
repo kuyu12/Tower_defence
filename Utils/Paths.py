@@ -7,6 +7,7 @@ ENEMY_IMAGES_PATH = ASSETS_PATH + '/Enemy_images'
 EXPLOSION_IMAGES_PATH = ASSETS_PATH + '/Shot_images/explotion_images'
 STAGES_PATH = sys.path[1] + "/Stages_data"
 USER_INFO_BACKGROUND_PATH = ASSETS_PATH + "/info_background.jpeg"
+MENU_BACKGROUND_PATH = ASSETS_PATH +"/menu_background.jpg"
 TOWER_PANEL_INFO_BACKGROUND_PATH = ASSETS_PATH + "/tower_background.jpeg"
 TOWER_INFO_BACKGROUND_PATH = ASSETS_PATH + "/tower_info.png"
 
